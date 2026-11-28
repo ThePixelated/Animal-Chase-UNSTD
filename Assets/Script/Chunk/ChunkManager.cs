@@ -18,6 +18,12 @@ public class ChunkManager : MonoBehaviour
     [SerializeField] private int availableDecorativeObj;
     [SerializeField] private ChunkByLevel chunkByLevel;
 
+    [Header("Percentage Probabilitas")]
+    [Range(0, 100)]
+    [SerializeField] private float innitialObstacleSpawnRate;
+    [Range(0, 100)]
+    [SerializeField] private float GameplayObstacleSpawnRate;
+
     private int _decorativeInstance;
     private int _obstacleInstance;
     private int _idChunk = 0;
@@ -96,7 +102,7 @@ public class ChunkManager : MonoBehaviour
         {
             List<GameObject> obstacles = gObj.GetComponent<ChunkInformation>().Obstacles;
 
-            float percentage = 75f;
+            float percentage = innitialObstacleSpawnRate;
             int obstacleCounter = 0;
             foreach (var item in obstacles)
             {
@@ -122,7 +128,7 @@ public class ChunkManager : MonoBehaviour
         ListOfChunks ChunkData = listOfChunk[_currentIndexChunkPool];
         List<GameObject> obstacles = ChunkData.ChunkObj.GetComponent<ChunkInformation>().Obstacles;
 
-        float percentage = 35f;
+        float percentage = GameplayObstacleSpawnRate;
         int obstacleCounter = 0;
         foreach (var item in obstacles)
         {
